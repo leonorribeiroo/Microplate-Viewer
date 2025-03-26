@@ -80,7 +80,7 @@ def open_image_window():
     top_frame = Frame(image_window)
     top_frame.pack(fill="x")
     
-    # Add the I3Slogo
+    # Add the i3Slogo
     logo_image = Image.open("logo2.png")
     logo_image = logo_image.resize((300, 145))  
     logo_tk = ImageTk.PhotoImage(logo_image)
@@ -189,7 +189,7 @@ main_window.title('Main Menu')
 main_window.columnconfigure(0, weight=1)
 main_window.columnconfigure(1, weight=1)
 
-# Add the I3S logo 
+# Add the i3S logo 
 logo_image = Image.open("logo.png")
 logo_image = logo_image.resize((50, 40))  
 logo_tk = ImageTk.PhotoImage(logo_image)
