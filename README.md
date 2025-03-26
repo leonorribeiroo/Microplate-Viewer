@@ -20,7 +20,7 @@ The program starts from a main menu and opens a secondary window to view and int
 1. Clone the Repository:
     ```bash
    git clone https://github.com/leonorribeiroo/Microplate-Viewer
-   cd microplate-selector
+   cd Microplate-Viewer
 
 3. Install dependencies:
    ``` bash
