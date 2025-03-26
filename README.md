@@ -19,7 +19,7 @@ The program starts from a main menu and opens a secondary window to view and int
 ## Installation
 1. Clone the Repository:
     ```bash
-   git clone https://github.com/seu-usuario/microplate-selector.git
+   git clone https://github.com/leonorribeiroo/microplate-selector.git
    cd microplate-selector
 
 3. Install dependencies:
