@@ -8,4 +8,5 @@ It supports 96-well and 24-well plates, allowing users to click on a well and lo
 - **Well Selection:** Clicking on a well identifies it and records it in a history log.
 - **Image Capture (Raspberry Pi):** If running on a Raspberry Pi, it captures and saves images using libcamera-still.
 - **History Logging:** Tracks selected wells and saved images.
+
 The program starts from a main menu and opens a secondary window to view and interact with the microplate.
