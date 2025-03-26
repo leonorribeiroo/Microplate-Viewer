@@ -20,9 +20,12 @@ The program starts from a main menu and opens a secondary window to view and int
 1. Clone the Repository:
     ```bash
    git clone https://github.com/leonorribeiroo/Microplate-Viewer
+   
+2. Change directory:
+   ```bash
    cd Microplate-Viewer
 
-3. Install dependencies:
+4. Install dependencies:
    ``` bash
    pip install -r requirements.txt
 
