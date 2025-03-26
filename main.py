@@ -54,7 +54,7 @@ def open_image_window():
     userNm = name_label_field.get().strip() or "DefaultUser"
     plateNm = plate_label_field.get().strip() or "DefaultPlate"
     pltSel = plate_value.get() if plate_value.get() in pxCo_dict else "96-well plate"
-    img_path = f"images/{pltSel.replace('-well plate', '')}-Well_plate.jpg"
+    img_path = f"{pltSel.replace('-well plate', '')}-Well_plate.jpg"
     
     # Get the magnification value
     magnification = StringVar()
@@ -81,7 +81,7 @@ def open_image_window():
     top_frame.pack(fill="x")
     
     # Add the I3Slogo
-    logo_image = Image.open("logo/logo2.png")
+    logo_image = Image.open("logo2.png")
     logo_image = logo_image.resize((300, 145))  
     logo_tk = ImageTk.PhotoImage(logo_image)
     logo_label = Label(image_window, image=logo_tk)
@@ -190,7 +190,7 @@ main_window.columnconfigure(0, weight=1)
 main_window.columnconfigure(1, weight=1)
 
 # Add the I3S logo 
-logo_image = Image.open("logo/logo.png")
+logo_image = Image.open("logo.png")
 logo_image = logo_image.resize((50, 40))  
 logo_tk = ImageTk.PhotoImage(logo_image)
 logo_label = Label(main_window, image=logo_tk)
