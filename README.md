@@ -31,7 +31,7 @@ The program starts from a main menu and opens a secondary window to view and int
 
 5. Run the Script:
    ```bash
-   python main.py
+   python wellview.py
 
 ## Dependencies
 - Python 3.x
