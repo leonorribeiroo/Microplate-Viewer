@@ -1,5 +1,5 @@
 # Well Viewer
-Python script developed in collaboration with i3S (Porto, Portugal; [www.i3s.up.pt](www.i3s.up.pt)) that creates a Tkinter-based graphical user interface for capturing and automatically anotating images of microplate wells using a Raspberry Pi 4B SBC and a Raspberry Pi High Quality (HQ) C(S)-mount camera on a trinocular stereo microscope.
+Python script developed in collaboration with i3S (Porto, Portugal; [www.i3s.up.pt](www.i3s.up.pt)) that creates a Tkinter-based graphical user interface for capturing and automatically anotating images of microplate wells using a *Raspberry Pi 4B SBC* and a *Raspberry Pi High Quality (HQ) C(S)-mount camera* on a trinocular stereo microscope.
 
 
 It allows users to:
