@@ -19,11 +19,11 @@ The program starts from a main menu and opens a secondary window to view and int
 ## Installation
 1. Clone the Repository:
     ```bash
-   git clone https://github.com/leonorribeiroo/Microplate-Viewer
+   git clone https://github.com/leonorribeiroo/WellView
    
 2. Change directory:
    ```bash
-   cd Microplate-Viewer
+   cd WellView
 
 4. Install dependencies:
    ``` bash
