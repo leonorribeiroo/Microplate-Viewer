@@ -17,17 +17,20 @@ The program starts from a main menu and opens a secondary window to view and int
 - History log of selected wells and saved files
 
 ## Installation
-1. Update the System
+1. **Update the System**
+
    Open a terminal on your Raspberry Pi and run:
     ```bash
    sudo apt update && sudo apt upgrade -y
    
-2. Install Dependencies
+3. **Install Dependencies**
+
    The required libraries can be installed using apt. Run:
    ```bash
    sudo apt install -y python3-tk python3-opencv python3-pil libcamera-apps
 
-4. Clone the Repository
+5. **Clone the Repository**
+
    If git is not installed, first install it with:
    ```bash
    sudo apt install -y git
@@ -43,7 +46,7 @@ The program starts from a main menu and opens a secondary window to view and int
    cd WellView
    ```
    
-5. Run the Script:
+7. **Run the Script:**
    ```bash
    python3 wellview.py
 
