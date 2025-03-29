@@ -25,7 +25,7 @@ The program starts from a main menu and opens a secondary window to view and int
 2. Install Dependencies
    The required libraries can be installed using apt. Run:
    ```bash
-   sudo apt install -y python3-tk python3-opencv python3-pil
+   sudo apt install -y python3-tk python3-opencv python3-pil libcamera-apps
 
 4. Clone the Repository
    If git is not installed, first install it with:
