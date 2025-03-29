@@ -54,7 +54,7 @@ def open_image_window():
     userNm = name_label_field.get().strip() or "DefaultUser"
     plateNm = plate_label_field.get().strip() or "DefaultPlate"
     pltSel = plate_value.get() if plate_value.get() in pxCo_dict else "96-well plate"
-    img_path = f"{pltSel.replace('-well plate', '')}-Well_plate.jpg"
+    img_path = f"images/{pltSel.replace('-well plate', '')}-Well_plate.jpg"
     
     # Get the magnification value
     magnification = StringVar()
@@ -80,8 +80,8 @@ def open_image_window():
     top_frame = Frame(image_window)
     top_frame.pack(fill="x")
     
-    # Add the i3Slogo
-    logo_image = Image.open("logo2.png")
+    # Add the I3Slogo
+    logo_image = Image.open("logo/logo2.png")
     logo_image = logo_image.resize((300, 145))  
     logo_tk = ImageTk.PhotoImage(logo_image)
     logo_label = Label(image_window, image=logo_tk)
@@ -127,7 +127,7 @@ def open_image_window():
 
     Button(history_frame, text="Finish", command=main_window.quit).grid(row=2, column=2, padx=10, pady=5, sticky="w")
 
-    OptionMenu(history_frame, magnification, "10x", "20x", "40x", "100x").grid(row=3, column=1, padx=10, pady=5)
+    OptionMenu(history_frame, magnification, "10x", "20x", "30x", "40x", "50x", "63x").grid(row=3, column=1, padx=10, pady=5)
 
     # Function to handle the click event on a well
     def click_canvas(event):
@@ -163,8 +163,8 @@ def open_image_window():
                 folderpath = os.path.join(pictures_dir, userNm, plateNm)
                 os.makedirs(folderpath, exist_ok=True)
 
-                file_name = os.path.join(folderpath, f"{current_datetime}_{current_magnification}_{selected}.png")
-                
+                file_name = os.path.join(folderpath, f"{current_datetime}_{selected}_{current_magnification}.png")
+ 
                 try:
                     subprocess.run(["libcamera-still", "-e", "png", "-o", file_name], check=True)
                     print(f"Image captured and saved: {file_name}")
@@ -189,8 +189,8 @@ main_window.title('Main Menu')
 main_window.columnconfigure(0, weight=1)
 main_window.columnconfigure(1, weight=1)
 
-# Add the i3S logo 
-logo_image = Image.open("logo.png")
+# Add the I3S logo 
+logo_image = Image.open("logo/logo.png")
 logo_image = logo_image.resize((50, 40))  
 logo_tk = ImageTk.PhotoImage(logo_image)
 logo_label = Label(main_window, image=logo_tk)
@@ -208,7 +208,7 @@ plate_label_field.grid(column=1, row=2)
 Label(main_window, text="Magnification:").grid(column=0, row=3)
 magnification_value = StringVar(main_window)
 magnification_value.set("10x")  # Standard value
-OptionMenu(main_window, magnification_value, "10x", "20x", "40x", "100x").grid(column=1, row=3)
+OptionMenu(main_window, magnification_value, "10x", "20x", "30x", "40x", "50x", "63x").grid(column=1, row=3)
 
 Label(main_window, text="Microplate type").grid(column=0, row=4)
 plate_list = ["96-well plate", "24-well plate"]
