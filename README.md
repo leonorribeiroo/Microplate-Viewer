@@ -23,7 +23,7 @@ The program starts from a main menu and opens a secondary window to view and int
    sudo apt update && sudo apt upgrade -y
    
 2. Install Dependencies
-3. The required libraries can be installed using apt. Run:
+   The required libraries can be installed using apt. Run:
    ```bash
    sudo apt install -y python3-tk python3-opencv python3-pil
 
@@ -31,14 +31,17 @@ The program starts from a main menu and opens a secondary window to view and int
    If git is not installed, first install it with:
    ```bash
    sudo apt install -y git
+   ```
 
    Then, clone this repository:
    ```bash
    git clone https://github.com/leonorribeiroo/WellView
+   ```
 
    Change the directory:
    ```bash
    cd WellView
+   ```
    
 5. Run the Script:
    ```bash
