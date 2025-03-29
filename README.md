@@ -64,13 +64,13 @@ Requires installation on Rasberry Pi:
 - rpicam
 
 ## Usage
-1. Enter the User Name and Microplate ID.
-2. Select the Microplate Type
-3. Select the Magnification (can be changed on the fly in the secondary interface).
-4. Click Start to open the well selection interface.
+1. Enter the *User Name* and *Microplate ID*.
+2. Select the *Microplate Type*
+3. Select the *Magnification* (can be changed on the fly in the secondary interface).
+4. Click *Start* to open the well selection interface.
 5. Click on a well to log its selection and capture an image.
-6. Click Back to return to the primary menu (and change the Microplate ID).
-7. Click Finish to exit the program.
+6. Click *Back* to return to the primary menu (and change the *Microplate ID*).
+7. Click *Finish* to exit the program.
 
 
 ## Notes
@@ -78,4 +78,4 @@ Ensure that rpicam-still is installed for image capture.
 
 Images are saved in the user's Pictures directory under:
 ```bash
-~/Pictures/{User}/{Microplate}.
+~/Pictures/{User}/{Microplate ID}.
