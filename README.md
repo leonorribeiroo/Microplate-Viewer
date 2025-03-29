@@ -25,7 +25,7 @@ The program starts from a main menu and opens a secondary window to view and int
    
 3. **Install Dependencies**
 
-   The required libraries can be installed using apt. Run:
+   The required libraries can be installed by running:
    ```bash
    sudo apt install -y python3-tk python3-opencv python3-pillow libcamera-apps
 
