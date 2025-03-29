@@ -17,29 +17,45 @@ The program starts from a main menu and opens a secondary window to view and int
 - History log of selected wells and saved files
 
 ## Installation
-1. Clone the Repository:
+1. Update the System
+   Open a terminal on your Raspberry Pi and run:
     ```bash
-   git clone https://github.com/leonorribeiroo/WellView
+   sudo apt update && sudo apt upgrade -y
    
-2. Change directory:
+2. Install Dependencies
+3. The required libraries can be installed using apt. Run:
+   ```bash
+   sudo apt install -y python3-tk python3-opencv python3-pil
+
+4. Clone the Repository
+   If git is not installed, first install it with:
+   ```bash
+   sudo apt install -y git
+
+   Then, clone this repository:
+   ```bash
+   git clone https://github.com/leonorribeiroo/WellView
+
+   Change the directory:
    ```bash
    cd WellView
-
-4. Install dependencies:
-   ``` bash
-   pip install -r requirements.txt
-
+   
 5. Run the Script:
    ```bash
-   python wellview.py
+   python3 wellview.py
 
 ## Dependencies
-- Python 3.x
+Pre-installed with Python:
+- Tkinter 
+- Bisect 
+- datetime
+- os
+- subprocess
+
+Requires installation on Rasberry Pi:
 - OpenCV (cv2)
 - Pillow (PIL)
-- Tkinter (built-in with Python)
-- NumPy
-- Bisect (standard library)
+- rpicam
 
 ## Usage
 1. Enter the User Name and Microplate ID.
