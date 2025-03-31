@@ -166,7 +166,7 @@ def open_image_window():
                 file_name = os.path.join(folderpath, f"{current_datetime}_{selected}_{current_magnification}.png")
  
                 try:
-                    subprocess.run(["rpicam-still", "-o", file_name], check=True)
+                    subprocess.run(["rpicam-still", "-e", "png", "-o", file_name], check=True)
                     print(f"Image captured and saved: {file_name}")
                     
                     # Update the history if the image was saved
