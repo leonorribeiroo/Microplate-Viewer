@@ -74,7 +74,7 @@ def open_image_window():
     img_tk = ImageTk.PhotoImage(img_pil)
     
     image_window = Toplevel(main_window)
-    image_window.title("Microplate Viewer")
+    image_window.title("WellView")
     
     # Create a Frame for the text, at the top
     top_frame = Frame(image_window)
@@ -185,7 +185,7 @@ def start_program():
 
 # Main window setup
 main_window = Tk()
-main_window.title('Main Menu')
+main_window.title('WellView')
 main_window.columnconfigure(0, weight=1)
 main_window.columnconfigure(1, weight=1)
 
