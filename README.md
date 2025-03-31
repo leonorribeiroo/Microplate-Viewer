@@ -27,7 +27,7 @@ The program starts from a main menu and opens a secondary window to view and int
 
    The required libraries can be installed by running:
    ```bash
-   sudo apt install -y python3-tk python3-opencv python3-pillow libcamera-apps
+   sudo apt install -y python3-tk python3-opencv python3-pil.imagetk
 
 5. **Clone the Repository**
 
