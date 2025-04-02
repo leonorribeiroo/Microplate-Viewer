@@ -53,7 +53,7 @@ The program starts from a main menu and opens a secondary window to view and int
 ## Dependencies
 Pre-installed with Python:
 - Tkinter 
-- Bisect 
+- Biosect 
 - datetime
 - os
 - subprocess
@@ -61,7 +61,6 @@ Pre-installed with Python:
 Requires installation on Rasberry Pi:
 - OpenCV (cv2)
 - Pillow (PIL)
-- rpicam
 
 ## Usage
 1. Enter the *User Name* and *Microplate ID*.
