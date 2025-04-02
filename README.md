@@ -53,7 +53,7 @@ The program starts from a main menu and opens a secondary window to view and int
 ## Dependencies
 Pre-installed with Python:
 - Tkinter 
-- Biosect 
+- Bisect 
 - datetime
 - os
 - subprocess
