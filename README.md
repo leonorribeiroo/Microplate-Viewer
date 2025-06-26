@@ -10,7 +10,7 @@ It allows users to:
 The program starts from a main menu and opens a secondary window to view and interact with the microplate.
 
 ## Features
-- Supports **96-well** and **24-well** plates
+- Supports **96-well**, **48-well** and **24-well** plates
 - Graphical selection of wells
 - Selectable magnification level (10x, 20x, 30x, 40x, 50x, 63x for our Nikon SMZ800 with 10x eyepieces)
 - **Raspberry Pi Camera integration** for image capture
