@@ -12,12 +12,16 @@ saved_files = []
 pxRo_dict = {
     '96-well plate': [0, 63.3, 117.3, 136.8, 190.8, 206.8, 260.8, 278.85, 332.85, 350.9,
                404.9, 422.95, 476.95, 495, 549, 567.05, 621.05],
+    '48-well plate': [0, 102.57891, 177.98109, 199.12891, 274.53109, 295.84891, 371.25109, 
+                      404.79291, 480.19509, 513.73691, 589.13909, 622.68091, 698.08309],
     '24-well plate': [0, 108.94, 220.94, 254.29, 366.29, 399.64, 511.64, 545.64, 657.64]
 }
 pxCo_dict = {
     '96-well plate': [0, 88.3, 142.3, 160.35, 214.35, 232.4, 286.4, 304.45, 358.45, 376.5,
                430.5, 448.55, 502.55, 520.6, 574.6, 592.65, 646.65, 664.7, 718.7, 736.75,
                790.75, 808.8, 862.8, 880.85, 934.85],
+    '48-well plate': [0, 125.77891, 201.18109, 234.72291, 310.12509, 343.66691, 419.06909, 
+                      452.61091, 528.01309, 561.55491, 636.95709, 670.49891, 745.90109, 779.44291, 854.84509, 888.38691, 963.78909],
     '24-well plate': [0, 123.27, 235.27, 267.77, 379.77, 412.27, 524.27, 556.77, 668.77, 701.27,
                813.27, 845.77, 957.77]
 }
@@ -74,13 +78,13 @@ def open_image_window():
     img_tk = ImageTk.PhotoImage(img_pil)
     
     image_window = Toplevel(main_window)
-    image_window.title("WellView")
+    image_window.title("Microplate Viewer")
     
     # Create a Frame for the text, at the top
     top_frame = Frame(image_window)
     top_frame.pack(fill="x")
     
-    # Add the i3Slogo
+    # Add the I3Slogo
     logo_image = Image.open("logo2.png")
     logo_image = logo_image.resize((300, 145))  
     logo_tk = ImageTk.PhotoImage(logo_image)
@@ -126,8 +130,17 @@ def open_image_window():
     Label(history_frame, text="Magnification:").grid(row=2, column=1, padx=10)
 
     Button(history_frame, text="Finish", command=main_window.quit).grid(row=2, column=2, padx=10, pady=5, sticky="w")
-
+    
     OptionMenu(history_frame, magnification, "10x", "20x", "30x", "40x", "50x", "63x").grid(row=3, column=1, padx=10, pady=5)
+
+    # Function to preview camera
+    def preview_camera():
+        try:
+            subprocess.run(["libcamera-hello", "-t", "3000", "--hflip", "--vflip"], check=True)
+        except subprocess.CalledProcessError as e:
+            print(f"Error during camera preview: {e}")
+
+    Button(history_frame, text="Preview", command=preview_camera).grid(row=4, column=0, columnspan=3, pady=5)
 
     # Function to handle the click event on a well
     def click_canvas(event):
@@ -166,7 +179,7 @@ def open_image_window():
                 file_name = os.path.join(folderpath, f"{current_datetime}_{selected}_{current_magnification}.png")
  
                 try:
-                    subprocess.run(["rpicam-still", "-e", "png", "-o", file_name], check=True)
+                    subprocess.run(["libcamera-still", "--hflip", "--vflip", "-e", "png", "-o", file_name], check=True)
                     print(f"Image captured and saved: {file_name}")
                     
                     # Update the history if the image was saved
@@ -211,7 +224,7 @@ magnification_value.set("10x")  # Standard value
 OptionMenu(main_window, magnification_value, "10x", "20x", "30x", "40x", "50x", "63x").grid(column=1, row=3)
 
 Label(main_window, text="Microplate type").grid(column=0, row=4)
-plate_list = ["96-well plate", "24-well plate"]
+plate_list = ["96-well plate", "48-well plate", "24-well plate"]
 plate_value = StringVar(main_window)
 plate_value.set("Select a microplate type")
 OptionMenu(main_window, plate_value, *plate_list).grid(column=0, row=4, columnspan=2, sticky=W+E)
