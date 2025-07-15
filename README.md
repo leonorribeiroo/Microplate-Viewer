@@ -6,6 +6,7 @@ It allows users to:
 - Record the image of a microplate well (with well position, timestamp and magnification) by clicking on the corresponding position on a schematic representation of the microplate.
 - Log selected wells with timestamps and magnification levels.
 - Maintain a history of selected wells and saved files.
+- See a live preview from the Raspberry Pi camera.
 
 The program starts from a main menu and opens a secondary window to view and interact with the microplate.
 
@@ -68,9 +69,10 @@ Requires installation on Rasberry Pi:
 3. Select the *Magnification* (can be changed on the fly in the secondary interface).
 4. Click *Start* to open the well selection interface.
 5. Click on a well to log its selection and capture an image.
-6. Click *Preview* to open a 3-second live preview from the Raspberry Pi camera.
-7. Click *Back* to return to the primary menu (and change the *Microplate ID*).
-8. Click *Finish* to exit the program.
+6. Click *Start Preview* to open a live preview from the Raspberry Pi camera.
+7. Click *Close Preview* to close the live preview from the Raspberry Pi camera.
+8. Click *Back* to return to the primary menu (and change the *Microplate ID*).
+9. Click *Finish* to exit the program.
 
 
 ## Notes
