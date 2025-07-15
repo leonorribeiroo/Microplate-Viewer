@@ -10,21 +10,22 @@ saved_files = []
 
 # Plate dimensions
 pxRo_dict = {
-    '96-well plate': [0, 63.3, 117.3, 136.8, 190.8, 206.8, 260.8, 278.85, 332.85, 350.9,
-               404.9, 422.95, 476.95, 495, 549, 567.05, 621.05],
-    '48-well plate': [0, 102.57891, 177.98109, 199.12891, 274.53109, 295.84891, 371.25109, 
-                      404.79291, 480.19509, 513.73691, 589.13909, 622.68091, 698.08309],
-    '24-well plate': [0, 108.94, 220.94, 254.29, 366.29, 399.64, 511.64, 545.64, 657.64]
+    '96-well plate': [0, 49.45, 91.66, 106.88, 149.06, 161.56, 203.75, 217.91, 260.09, 274.22,
+                      316.41, 330.56, 372.75, 386.25, 428.44, 442.59, 484.78],
+    '48-well plate': [0, 78, 138, 153, 214, 228, 290, 302, 366, 377, 442, 452, 518],
+    '24-well plate': [0, 85.16, 172.5, 198.84, 286.18, 312.53, 399.87, 426.09, 513.43]
 }
+
 pxCo_dict = {
-    '96-well plate': [0, 88.3, 142.3, 160.35, 214.35, 232.4, 286.4, 304.45, 358.45, 376.5,
-               430.5, 448.55, 502.55, 520.6, 574.6, 592.65, 646.65, 664.7, 718.7, 736.75,
-               790.75, 808.8, 862.8, 880.85, 934.85],
-    '48-well plate': [0, 125.77891, 201.18109, 234.72291, 310.12509, 343.66691, 419.06909, 
-                      452.61091, 528.01309, 561.55491, 636.95709, 670.49891, 745.90109, 779.44291, 854.84509, 888.38691, 963.78909],
-    '24-well plate': [0, 123.27, 235.27, 267.77, 379.77, 412.27, 524.27, 556.77, 668.77, 701.27,
-               813.27, 845.77, 957.77]
+    '96-well plate': [0, 68.99, 111.13, 125.27, 167.42, 181.25, 223.4, 237.5, 279.65, 293.75,
+                      335.9, 350.04, 392.19, 406.33, 448.48, 462.62, 504.77, 518.87, 561.02,
+                      575.16, 617.31, 631.45, 673.6, 687.73, 729.88],
+    '48-well plate': [0, 98.24, 156.6, 182.91, 241.27, 267.58, 325.94, 352.25,
+                      410.61, 436.92, 495.28, 521.59, 579.95, 606.26, 664.62, 690.93, 749.29],
+    '24-well plate': [0, 96.23, 183.59, 208.96, 296.32, 321.69, 409.05, 434.42,
+                      521.78, 547.15, 634.51, 659.88, 747.24]
 }
+
 
 # Function to verify if the code is running on a Raspberry Pi
 def is_raspberry_pi():
@@ -78,9 +79,9 @@ def open_image_window():
     img_tk = ImageTk.PhotoImage(img_pil)
     
     image_window = Toplevel(main_window)
+    image_window.geometry("1920x1080")
     image_window.title("Microplate Viewer")
     
-    # Create a Frame for the text, at the top
     top_frame = Frame(image_window)
     top_frame.pack(fill="x")
     
@@ -91,29 +92,29 @@ def open_image_window():
     logo_label = Label(image_window, image=logo_tk)
     logo_label.place(relx=0.0, rely=0.0, anchor="nw", y=-25)
 
-    # Add the text inside the top_frame 
     Label(top_frame, text="Select the well to capture", font=("Arial", 24, "bold")).pack()
     Label(top_frame, text=f"User: {userNm}", font=("Arial", 16)).pack()
     Label(top_frame, text=f"Microplate ID: {plateNm}", font=("Arial", 16)).pack()
 
-    # Create a Frame for the image (with left and right padding frames)
-    image_frame = Frame(image_window)
-    image_frame.pack(fill="both", expand=True, padx=20, pady=20)  
+    content_frame = Frame(image_window)
+    content_frame.pack(fill="both", expand=True)
 
-    # Create the canvas to display the image in the center frame
-    center_frame = Frame(image_frame)
-    center_frame.grid(row=0, column=1)
+    image_frame = Frame(content_frame)
+    image_frame.pack(side="left", padx=40, pady=20)
 
-    canvas = Canvas(center_frame, width=img_pil.width, height=img_pil.height)
-    canvas.pack(fill="both", expand=True)
+    img_pil = Image.fromarray(img_cv)
+    width, height = img_pil.size
+    canvas = Canvas(image_frame, width=width, height=height, bg="white", highlightthickness=0)
+    canvas.pack()
 
-    # Display the image on the canvas
+    right_frame = Frame(content_frame, width=300)
+    right_frame.pack(side="left", fill="y",padx=40 , pady=20, anchor="n")
+
+    history_frame = Frame(right_frame)
+    history_frame.pack(pady=10, fill="x")
+
     canvas.create_image(0, 0, anchor="nw", image=img_tk)
 
-    right_frame = Frame(image_frame, width=200)  # This will hold the buttons and history
-    right_frame.grid(row=0, column=2, sticky="ns")
-
-    # Create a frame to organize the buttons and history inside the right_frame
     history_frame = Frame(right_frame)
     history_frame.pack(pady=10, fill="x")
 
@@ -133,37 +134,70 @@ def open_image_window():
     
     OptionMenu(history_frame, magnification, "10x", "20x", "30x", "40x", "50x", "63x").grid(row=3, column=1, padx=10, pady=5)
 
+    preview_button_frame = Frame(history_frame)
+    preview_button_frame.grid(row=4, column=0, columnspan=3, pady=5)
+
     # Function to preview camera
     def preview_camera():
         try:
-            subprocess.run(["libcamera-hello", "-t", "3000", "--hflip", "--vflip"], check=True)
+            subprocess.run(["libcamera-hello", "-t", "0", "--hflip", "--vflip"], check=True)
         except subprocess.CalledProcessError as e:
             print(f"Error during camera preview: {e}")
+    Button(preview_button_frame, text="Start Preview", command=preview_camera).pack(side="left", padx=10)
 
-    Button(history_frame, text="Preview", command=preview_camera).grid(row=4, column=0, columnspan=3, pady=5)
+
+    def stop_preview():
+        global preview_process
+        if preview_process and preview_process.poll() is None:
+            preview_process.terminate()
+            preview_process.wait()
+            preview_process = None
+    Button(preview_button_frame, text="Close Preview", command=stop_preview).pack(side="left", padx=10)
+
 
     # Function to handle the click event on a well
     def click_canvas(event):
         global img_cv, img_pil, img_tk
         x, y = event.x, event.y
-        selected = sel_well(x, y, pltSel)
-        
-        if selected:
+        pxCo = pxCo_dict[pltSel]
+        pxRo = pxRo_dict[pltSel]
+
+        iCo = bisect(pxCo, x)
+        iRo = bisect(pxRo, y)
+
+        if iCo > 0 and iRo > 0 and iCo % 2 == 0 and iRo % 2 == 0:
+            strg = 'ABCDEFGH'
+            well_id = strg[int(iRo/2 - 1)] + str(int(iCo/2))
+
             current_magnification = magnification.get()
 
             # Update the history
             history_text.config(state='normal')
-            history_text.insert('end', f"{datetime.now().strftime('%H:%M:%S')} - {current_magnification} - {selected}\n")
+            history_text.insert('end', f"{datetime.now().strftime('%H:%M:%S')} - {current_magnification} - {well_id}\n")
             history_text.config(state='disabled')
 
-            # Copy the image to display the selected well (to keep the original image)
+            # Copy and draw label at center of correct well
             img_display = img_cv.copy()
             font = cv2.FONT_HERSHEY_SIMPLEX
-            text_size = cv2.getTextSize(selected, font, 1, 2)[0]
-            text_x = x - text_size[0] // 2
-            text_y = y + text_size[1] // 2
-            cv2.putText(img_display, selected, (text_x, text_y), font, 1, (255, 0, 0), 2)
-            
+            text = well_id
+
+            if pltSel == '96-well plate':
+                font_scale = 0.6
+                thickness = 2
+            else:
+                font_scale = 1
+                thickness = 2
+
+            x_center = (pxCo[iCo - 1] + pxCo[iCo]) // 2
+            y_center = (pxRo[iRo - 1] + pxRo[iRo]) // 2
+
+            text_size = cv2.getTextSize(text, font, font_scale, thickness)[0]
+            text_x = int(x_center - text_size[0] / 2)
+            text_y = int(y_center + text_size[1] / 2)
+
+            cv2.putText(img_display, text, (text_x, text_y), font, font_scale, (255, 0, 0), thickness)
+
+
             img_pil = Image.fromarray(img_display)
             img_tk = ImageTk.PhotoImage(img_pil)
             canvas.create_image(0, 0, anchor="nw", image=img_tk)
@@ -176,19 +210,19 @@ def open_image_window():
                 folderpath = os.path.join(pictures_dir, userNm, plateNm)
                 os.makedirs(folderpath, exist_ok=True)
 
-                file_name = os.path.join(folderpath, f"{current_datetime}_{selected}_{current_magnification}.png")
- 
+                file_name = os.path.join(folderpath, f"{current_datetime}_{well_id}_{current_magnification}.png")
+
                 try:
                     subprocess.run(["libcamera-still", "--hflip", "--vflip", "-e", "png", "-o", file_name], check=True)
                     print(f"Image captured and saved: {file_name}")
                     
-                    # Update the history if the image was saved
                     history_text_main.config(state='normal')
                     history_text_main.insert('end', file_name + '\n')
                     history_text_main.config(state='disabled')
 
                 except subprocess.CalledProcessError as e:
                     print(f"Error capturing image with Raspberry Pi: {e}")
+
     
     canvas.bind("<Button-1>", click_canvas)
     
