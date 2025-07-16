@@ -26,6 +26,7 @@ pxCo_dict = {
                       521.78, 547.15, 634.51, 659.88, 747.24]
 }
 
+preview_process = None 
 
 # Function to verify if the code is running on a Raspberry Pi
 def is_raspberry_pi():
@@ -115,9 +116,6 @@ def open_image_window():
 
     canvas.create_image(0, 0, anchor="nw", image=img_tk)
 
-    history_frame = Frame(right_frame)
-    history_frame.pack(pady=10, fill="x")
-
     # History Label 
     history_label = Label(history_frame, text="Selected Wells History:")
     history_label.grid(row=0, column=0, columnspan=3, pady=10)  
@@ -139,8 +137,9 @@ def open_image_window():
 
     # Function to preview camera
     def preview_camera():
+        global preview_process
         try:
-            subprocess.run(["libcamera-hello", "-t", "0", "--hflip", "--vflip"], check=True)
+            preview_process = subprocess.Popen(["libcamera-hello", "-t", "0", "--hflip", "--vflip"])
         except subprocess.CalledProcessError as e:
             print(f"Error during camera preview: {e}")
     Button(preview_button_frame, text="Start Preview", command=preview_camera).pack(side="left", padx=10)
